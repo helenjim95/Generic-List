@@ -1,9 +1,9 @@
 package de.tum.in.ase;
 
 public class ListNode<T> {
-    T value;
-    ListNode<T> previous;
-    ListNode<T> next;
+    private T value;
+    private ListNode<T> previous;
+    private ListNode<T> next;
 
     public ListNode() {
     }

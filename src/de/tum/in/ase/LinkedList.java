@@ -7,47 +7,37 @@ import java.util.stream.Collectors;
 // make it implement the interface MyList
 public class LinkedList<T> implements MyList<T> {
 
-    ListNode<T> node0;
-    ListNode<T> node1;
-    ListNode<T> node2;
+    private ListNode<T> first;
+    private ListNode<T> last;
 
-    public LinkedList(ListNode<T> node0, ListNode<T> node1, ListNode<T> node2) {
-        this.node0 = node0;
-        this.node1 = node1;
-        this.node2 = node2;
+    public LinkedList() {
+        this.first = null;
+        this.last = null;
     }
 
-    public ListNode<T> getNode0() {
-        return node0;
+    public ListNode<T> getFirst() {
+        return first;
     }
 
-    public void setNode0(ListNode<T> node0) {
-        this.node0 = node0;
+    public void setFirst(ListNode<T> first) {
+        this.first = first;
     }
 
-    public ListNode<T> getNode1() {
-        return node1;
+    public ListNode<T> getLast() {
+        return last;
     }
 
-    public void setNode1(ListNode<T> node1) {
-        this.node1 = node1;
-    }
-
-    public ListNode<T> getNode2() {
-        return node2;
-    }
-
-    public void setNode2(ListNode<T> node2) {
-        this.node2 = node2;
+    public void setLast(ListNode<T> last) {
+        this.last = last;
     }
 
     @Override
     public int size() {
-        if (node0.getNext() == null) {
+        if (getLast() == null) {
             return 0;
         } else {
             int count = 0;
-            ListNode<T> current = node0;
+            ListNode<T> current = getFirst();
             while (current != null) {
                 count += 1;
                 current = current.getNext();
@@ -58,7 +48,7 @@ public class LinkedList<T> implements MyList<T> {
 
     @Override
     public boolean isEmpty() {
-        return node0.getNext() == null;
+        return getFirst().getNext() == null;
     }
 
     @Override
@@ -77,8 +67,8 @@ public class LinkedList<T> implements MyList<T> {
     @Override
     public void add(T t) {
         if (!this.isEmpty()) {
-            ListNode<T> newNode = new ListNode<>(t, this.getNode2(), null);
-            this.node2.setNext(newNode);
+            ListNode<T> newNode = new ListNode<>(t, this.getLast(), null);
+            this.getLast().setNext(newNode);
         } else {
             ListNode<T> newNode = new ListNode<>(t, null, null);
         }
@@ -96,20 +86,20 @@ public class LinkedList<T> implements MyList<T> {
     @Override
     public void clear() {
         if (!this.isEmpty()) {
-            node0.setNext(null);
-            node2.setPrevious(null);
+            getFirst().setNext(null);
+            getLast().setPrevious(null);
         }
     }
 
     @Override
     public T get(int index) {
-        if (node0.getNext() == null || index > this.size() - 1) {
+        if (getFirst().getNext() == null || index > this.size() - 1) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         } else if (index == this.size() - 1) {
-            return node2.getValue();
+            return getLast().getValue();
         } else {
             int count = 0;
-            ListNode<T> current = node0;
+            ListNode<T> current = getFirst();
             while(count < index) {
                 count += 1;
                 current = current.getNext();
@@ -126,11 +116,11 @@ public class LinkedList<T> implements MyList<T> {
         } else {
             for (int i = this.size() - 1; i >= index; i--) {
                 if (i == this.size() - 1) {
-                    ListNode<T> newNode = new ListNode<>(element, this.getNode2(), null);
-                    this.node2.setNext(newNode);
+                    ListNode<T> newNode = new ListNode<>(element, getLast(), null);
+                    getLast().setNext(newNode);
                 } else if (i == 0) {
-                    ListNode<T> newNode = new ListNode<>(element, null, this.getNode0());
-                    this.node0.setPrevious(newNode);
+                    ListNode<T> newNode = new ListNode<>(element, null, getFirst());
+                    getFirst().setPrevious(newNode);
                 } else {
                     ListNode<T> newNode = new ListNode<>(element);
                     ListNode<T> previousNode = new ListNode<>(this.get(i - 1));
@@ -144,6 +134,7 @@ public class LinkedList<T> implements MyList<T> {
         }
     }
 
+//    TODO: need to change
     @Override
     public T remove(int index) {
         return get(index);
@@ -234,7 +225,7 @@ public class LinkedList<T> implements MyList<T> {
             } else {
             // iterate through list and add value as string to list
                 int count = 0;
-                ListNode<T> current = node0;
+                ListNode<T> current = getFirst();
                 while(count < this.size()) {
                     elements.add(current.getValue());
                     count += 1;
