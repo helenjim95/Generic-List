@@ -66,6 +66,7 @@ public class LinkedList<T> implements MyList<T> {
         return false;
     }
 
+//    TODO: need to fix
     @Override
     public void add(T t) {
         if (!this.isEmpty()) {
@@ -76,6 +77,7 @@ public class LinkedList<T> implements MyList<T> {
         }
     }
 
+    //    TODO: need to fix
     @Override
     public void remove(T o) {
         if (this.contains(o)) {
@@ -93,21 +95,24 @@ public class LinkedList<T> implements MyList<T> {
         }
     }
 
+    //    TODO: need to fix
     @Override
     public T get(int index) {
 //        if (getFirst() == null || getFirst().getNext() == null || index > this.size() - 1)
         try {
-            if (getFirst() != null && getFirst().getNext() != null) {
+            if (getFirst() != null) {
                 int count = 0;
                 ListNode<T> current = getFirst();
-                while (count < index) {
+                while (current != null) {
+                    if (count == index)
+                        return current.getValue();
                     count += 1;
                     current = current.getNext();
                 }
-                return current.getValue();
+                return null;
             }
             return null;
-        } catch (IndexOutOfBoundsException ie) {
+        } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         }
     }
