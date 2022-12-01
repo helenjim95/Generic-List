@@ -98,7 +98,6 @@ public class LinkedList<T> implements MyList<T> {
     //    TODO: need to fix
     @Override
     public T get(int index) {
-//        if (getFirst() == null || getFirst().getNext() == null || index > this.size() - 1)
         try {
             if (getFirst() != null) {
                 int count = 0;
@@ -117,6 +116,7 @@ public class LinkedList<T> implements MyList<T> {
         }
     }
 
+//    TODO: need to fix
     @Override
     public void add(int index, T element) {
         ListNode<T> listNodeElement = new ListNode<>(element);
@@ -211,10 +211,14 @@ public class LinkedList<T> implements MyList<T> {
         if (this.isEmpty()) {
             return -1;
         }
-        for (int i = 0; i < this.size(); i++) {
-            if (this.get(i).equals(o)) {
-                return i;
-            }
+        int count = 0;
+        ListNode<T> current = getFirst();
+        T value = current.getValue();
+        while (current != null) {
+            if (value == o)
+                return count;
+            count += 1;
+            current = current.getNext();
         }
         return -1;
     }
