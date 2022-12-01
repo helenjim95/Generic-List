@@ -97,14 +97,17 @@ public class LinkedList<T> implements MyList<T> {
     public T get(int index) {
 //        if (getFirst() == null || getFirst().getNext() == null || index > this.size() - 1)
         try {
-            int count = 0;
-            ListNode<T> current = getFirst();
-            while (count < index) {
-                count += 1;
-                current = current.getNext();
+            if (getFirst() != null && getFirst().getNext() != null) {
+                int count = 0;
+                ListNode<T> current = getFirst();
+                while (count < index) {
+                    count += 1;
+                    current = current.getNext();
+                }
+                return current.getValue();
             }
-            return current.getValue();
-        } catch (IndexOutOfBoundsException e) {
+            return null;
+        } catch (IndexOutOfBoundsException ie) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         }
     }
