@@ -95,7 +95,7 @@ public class LinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        if (getFirst().getNext() == null || index > this.size() - 1) {
+        if (getFirst() == null || getFirst().getNext() == null || index > this.size() - 1) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         } else if (index == this.size() - 1) {
             return getLast().getValue();
