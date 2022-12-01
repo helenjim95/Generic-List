@@ -11,6 +11,8 @@ public class LinkedList<T> implements MyList<T> {
     private ListNode<T> last;
 
     public LinkedList() {
+        this.first.setNext(this.last);
+        this.last.setPrevious(this.first);
     }
 
     public ListNode<T> getFirst() {
