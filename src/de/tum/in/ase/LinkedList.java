@@ -11,8 +11,10 @@ public class LinkedList<T> implements MyList<T> {
     private ListNode<T> last;
 
     public LinkedList() {
-        this.first = new ListNode<>();
-        this.last = new ListNode<>();
+        ListNode<T> firstListNode = new ListNode<T>();
+        ListNode<T> lastListNode = new ListNode<T>();
+        this.first = new ListNode<>(firstListNode.getValue(), firstListNode.getPrevious(), firstListNode.getNext());
+        this.last = new ListNode<>(lastListNode.getValue(), lastListNode.getPrevious(), lastListNode.getNext());
     }
 
     public ListNode<T> getFirst() {
