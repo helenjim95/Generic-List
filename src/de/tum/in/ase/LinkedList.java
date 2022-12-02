@@ -97,7 +97,7 @@ public class LinkedList<T> implements MyList<T> {
 
     //    TODO: need to fix
     @Override
-    public T get(int index) {
+    public T get(int index) throws IndexOutOfBoundsException {
         try {
             if (getFirst() != null) {
                 int count = 0;
@@ -118,7 +118,7 @@ public class LinkedList<T> implements MyList<T> {
 
 //    TODO: need to fix
     @Override
-    public void add(int index, T element) {
+    public void add(int index, T element) throws IndexOutOfBoundsException {
         ListNode<T> listNodeElement = new ListNode<>(element);
         if (index > this.size() - 1) {
             throw new IndexOutOfBoundsException("List index is out of bound");
@@ -145,7 +145,7 @@ public class LinkedList<T> implements MyList<T> {
 
 //    TODO: need to change
     @Override
-    public T remove(int index) {
+    public T remove(int index) throws IndexOutOfBoundsException {
         return get(index);
     }
 //        if (index < 0 || index > this.size() - 1) {
@@ -239,7 +239,7 @@ public class LinkedList<T> implements MyList<T> {
             // iterate through list and add value as string to list
                 int count = 0;
                 ListNode<T> current = getFirst();
-                while(count < this.size()) {
+                while(current != null) {
                     elements.add(current.getValue());
                     count += 1;
                     current = current.getNext();
