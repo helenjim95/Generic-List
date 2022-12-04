@@ -139,7 +139,6 @@ public class LinkedList<T> implements MyList<T> {
 //            }
 //            return null;
 
-//    TODO: need to fix
     @Override
     public void add(int index, T element) throws IndexOutOfBoundsException {
         ListNode<T> newNode = new ListNode<>(element);
@@ -152,11 +151,15 @@ public class LinkedList<T> implements MyList<T> {
                 for (int i = 0; i < index && currentNode.getNext() != null; i++) {
                     // set the new node's next-node reference to this node's next-node reference
                     newNode.setPrevious(currentNode.getPrevious());
-                    newNode.setNext(currentNode);
-                    // now set this node's next-node reference to the new node
                     currentNode.setPrevious(newNode);
-                    currentNode.setNext(currentNode.getNext());
-                    currentNode = currentNode.getNext();
+                    newNode.setNext(currentNode);
+                    // Check if new node is added as head
+                    if (newNode.getPrevious() != null) {
+                        newNode.getPrevious().setNext(newNode);
+                    }
+                    else {
+                        this.first = newNode;
+                    }
                 }
             }
         }
