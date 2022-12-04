@@ -84,12 +84,18 @@ public class LinkedList<T> implements MyList<T> {
             if (this.first != null) {
                 ListNode<T> currentNode = this.first;
                 for (int i = 0; i < index; i++) {
-                    if (currentNode.getNext() == null)
+                    if (currentNode.getNext() == null) {
                         break;
+                    }
+                    if (currentNode.getNext().getNext() != null) {
+                        currentNode.setNext(currentNode.getNext().getNext());
+                        currentNode.getNext().setPrevious(currentNode);
+                    } else {
+                        currentNode.setNext(null);
+                    }
                     currentNode = currentNode.getNext();
                 }
-                currentNode.setNext(currentNode.getNext().getNext());
-                currentNode.getNext().setPrevious(currentNode);
+
             }
         }
     }
