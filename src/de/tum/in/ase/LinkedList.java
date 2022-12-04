@@ -58,7 +58,7 @@ public class LinkedList<T> implements MyList<T> {
         }
 
         ListNode<T> currentNode = this.first;
-        while(currentNode.getNext() != null) {
+        while(currentNode != null) {
             if (currentNode.getValue() == o) {
                 return true;
             }
