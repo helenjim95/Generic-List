@@ -34,7 +34,7 @@ public class LinkedList<T> implements MyList<T> {
     @Override
     public int size() {
         ListNode<T> current = this.first;
-        if (current.getNext() == null) {
+        if (current == null) {
             return 0;
         } else {
             int count = 0;
@@ -65,12 +65,6 @@ public class LinkedList<T> implements MyList<T> {
             currentNode = currentNode.getNext();
         }
         return false;
-//        for (int i = 0; i < this.size(); i++) {
-//            if (this.get(i).equals(o)) {
-//                return true;
-//            }
-//        }
-//        return false;
     }
 
     @Override
@@ -103,7 +97,6 @@ public class LinkedList<T> implements MyList<T> {
                         currentNode = currentNode.getNext();
                     }
                     currentNode.setNext(currentNode.getNext().getNext());
-                    // decrement the number of elements variable
                 }
             }
         }
@@ -116,12 +109,10 @@ public class LinkedList<T> implements MyList<T> {
 //        }
 
 
-//        TODO: how to implement this?
     @Override
     public void clear() {
         if (!this.isEmpty()) {
             this.first.setNext(null);
-//            this.last.setPrevious(null);
         }
     }
 
