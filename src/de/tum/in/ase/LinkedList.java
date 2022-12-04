@@ -11,6 +11,8 @@ public class LinkedList<T> implements MyList<T> {
     private ListNode<T> last;
 
     public LinkedList() {
+        this.first = null;
+        this.last = null;
     }
 
     public ListNode<T> getFirst() {
@@ -74,28 +76,19 @@ public class LinkedList<T> implements MyList<T> {
 //    TODO: need to fix
     @Override
     public void add(T t) {
+        ListNode<T> newNode = new ListNode<>(t);
         if (this.first == null) {
-            this.first = new ListNode<>(t);
+            this.first = newNode;
+            this.first.setPrevious(null);
+            this.last = newNode;
+            this.last.setNext(null);
         } else {
-            ListNode<T> newNode = new ListNode<>(t);
-            ListNode<T> currentNode = this.first;
-            while (currentNode.getNext() != null) {
-                currentNode = currentNode.getNext();
-            }
-            currentNode.setNext(newNode);
-
+            this.last.setNext(newNode);
+            newNode.setPrevious(this.last);
+            this.last = newNode;
+            this.last.setNext(null);
         }
     }
-//            ListNode<T> oldLast = last;
-//            this.last = new ListNode<>(t, oldLast, null);
-//            oldLast.setNext(this.last);
-
-//        if (!this.isEmpty()) {
-//            ListNode<T> newNode = new ListNode<>(t, this.getLast(), null);
-//            this.getLast().setNext(newNode);
-//        } else {
-//            ListNode<T> newNode = new ListNode<>(t, null, null);
-//        }
 
     //    TODO: need to fix
     @Override
