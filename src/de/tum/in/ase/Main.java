@@ -20,6 +20,7 @@ public class Main {
         fifth.setNext(null);
         list.setFirst(first);
         list.setLast(fifth);
+        System.out.println(list.get(1));
         System.out.println(list.indexOf("two"));
         list.remove("two");
         System.out.println(list);
