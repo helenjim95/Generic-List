@@ -6,7 +6,7 @@ public class Main {
         ListNode first = new ListNode("one");
         ListNode second = new ListNode("two");
         ListNode third = new ListNode("three");
-        ListNode forth = new ListNode("four");
+        ListNode forth = new ListNode("two");
         ListNode fifth = new ListNode("five");
         first.setPrevious(null);
         first.setNext(second);
@@ -20,9 +20,8 @@ public class Main {
         fifth.setNext(null);
         list.setFirst(first);
         list.setLast(fifth);
-        System.out.println(list.get(1));
-        System.out.println(list.indexOf("two"));
-        list.remove("two");
+        System.out.println(list.indexOf("f"));
+//        list.remove("two");
         System.out.println(list);
     }
 }
