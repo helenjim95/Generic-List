@@ -179,8 +179,11 @@ public class LinkedList<T> implements MyList<T> {
     public int indexOf(T o) {
         int index = 0;
         ListNode<T> currentNode = this.first;
-        if (currentNode == null) {
+        if (currentNode == null || this.size() == 0) {
             return -1;
+        }
+        if (currentNode.getNext() == null && currentNode.getValue() == o) {
+            return index;
         }
         while (currentNode.getNext() != null) {
             if (currentNode.getValue() == o) {
