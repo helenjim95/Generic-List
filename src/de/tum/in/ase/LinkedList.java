@@ -34,16 +34,12 @@ public class LinkedList<T> implements MyList<T> {
     @Override
     public int size() {
         ListNode<T> current = this.first;
-        if (current == null) {
-            return 0;
-        } else {
-            int count = 0;
-            while (current.getNext() != null) {
-                count += 1;
-                current = current.getNext();
-            }
-            return count;
+        int size = 0;
+        while (current != null) {
+            current = current.getNext();
+            size += 1;
         }
+        return size;
     }
 
     @Override
