@@ -35,7 +35,7 @@ public class LinkedList<T> implements MyList<T> {
 
     @Override
     public int size() {
-        if (getLast() == null) {
+        if (this.first.getLast() == null) {
             return 0;
         } else {
             int count = 0;
@@ -50,7 +50,7 @@ public class LinkedList<T> implements MyList<T> {
 
     @Override
     public boolean isEmpty() {
-        return getFirst().getNext() == null;
+        return this.getFirst() == null;
     }
 
     @Override
@@ -69,29 +69,37 @@ public class LinkedList<T> implements MyList<T> {
 //    TODO: need to fix
     @Override
     public void add(T t) {
-        if (!this.isEmpty()) {
-            ListNode<T> newNode = new ListNode<>(t, this.getLast(), null);
-            this.getLast().setNext(newNode);
-        } else {
-            ListNode<T> newNode = new ListNode<>(t, null, null);
-        }
+        ListNode<T> oldLast = last;
+        this.last = new ListNode<>(t, oldLast, null);
+        oldLast.setNext(this.last);
+
+//        if (!this.isEmpty()) {
+//            ListNode<T> newNode = new ListNode<>(t, this.getLast(), null);
+//            this.getLast().setNext(newNode);
+//        } else {
+//            ListNode<T> newNode = new ListNode<>(t, null, null);
+//        }
     }
 
     //    TODO: need to fix
     @Override
     public void remove(T o) {
-        if (this.contains(o)) {
-//            removes the first node (if it exists) with the value equal to the method parameter.
-            int index = indexOf(o);
-            remove(index);
+        if (this.last != null) {
+            this.last = this.last.last;
         }
+
+//        if (this.contains(o)) {
+////            removes the first node (if it exists) with the value equal to the method parameter.
+//            int index = indexOf(o);
+//            remove(index);
+//        }
     }
 
     @Override
     public void clear() {
         if (!this.isEmpty()) {
-            getFirst().setNext(null);
-            getLast().setPrevious(null);
+            this.first.setNext(null);
+            this.last.setPrevious(null);
         }
     }
 
