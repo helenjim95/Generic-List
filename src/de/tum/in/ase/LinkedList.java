@@ -276,7 +276,7 @@ public class LinkedList<T> implements MyList<T> {
             while (currentNode != null) {
                 str.append(currentNode.getValue().toString());
                 if (currentNode.getNext() != null) {
-                    str.append(",");
+                    str.append(", ");
                 }
                 currentNode = currentNode.getNext();
             }
