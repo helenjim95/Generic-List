@@ -110,13 +110,9 @@ public class LinkedList<T> implements MyList<T> {
 //                currentNode is the node before node with value o
                     if (currentNode.getNext().getNext() != null) {
                         currentNode.setNext(currentNode.getNext().getNext());
-                    } else {
-                        currentNode.setNext(null);
-                    }
-                    if (currentNode.getPrevious() != null) {
                         currentNode.getNext().setPrevious(currentNode);
                     } else {
-                        currentNode.getNext().setPrevious(null);
+                        currentNode.setNext(null);
                     }
                 }
             }
@@ -130,7 +126,6 @@ public class LinkedList<T> implements MyList<T> {
         }
     }
 
-    //    TODO: need to fix
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= this.size()) {
@@ -142,16 +137,6 @@ public class LinkedList<T> implements MyList<T> {
         }
         return currentNode.getValue();
     }
-
-//            int count = 0;
-//            while (currentNode.getNext() != null) {
-//                if (count == index) {
-//                    return currentNode.getValue();
-//                }
-//                count += 1;
-//                currentNode = currentNode.getNext();
-//            }
-//            return null;
 
     @Override
     public void add(int index, T element) throws IndexOutOfBoundsException {
