@@ -118,8 +118,7 @@ public class LinkedList<T> implements MyList<T> {
         if (index < 0 || index >= this.size()) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         }
-        ListNode<T> currentNode = null;
-        currentNode = this.first.getNext();
+        ListNode<T> currentNode = this.first.getNext();
         for (int i = 0; i < index; i++) {
             if (currentNode.getNext() == null) {
                 return null;
@@ -164,24 +163,8 @@ public class LinkedList<T> implements MyList<T> {
             }
         }
     }
-//            for (int i = this.size() - 1; i >= index; i--) {
-//                if (i == this.size() - 1) {
-//                    ListNode<T> newNode = new ListNode<>(element, getLast(), null);
-//                    getLast().setNext(newNode);
-//                } else if (i == 0) {
-//                    ListNode<T> newNode = new ListNode<>(element, null, getFirst());
-//                    getFirst().setPrevious(newNode);
-//                } else {
-//                    ListNode<T> newNode = new ListNode<>(element);
-//                    ListNode<T> previousNode = new ListNode<>(this.get(i - 1));
-//                    ListNode<T> currentNode = new ListNode<>(this.get(i));
-//                    newNode.setPrevious(previousNode);
-//                    newNode.setNext(currentNode);
-//                    previousNode.setNext(newNode);
-//                    currentNode.setPrevious(newNode);
-//                }
-//            }
 
+//    TODO: need to fix this
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
         return get(index);
@@ -220,48 +203,19 @@ public class LinkedList<T> implements MyList<T> {
 //        }
 //    }
 
-//
-//            for (int i = index; i < this.size() - 1; i++) {
-//                if (i == this.size() - 1) {
-//                    T node = node2.getValue();
-//                    node2.setPrevious(null);
-//                    ListNode<T> previousNode = new ListNode<>(this.get(i - 1));
-//                    previousNode.setNext(null);
-//                    return node;
-//                } else if (i == 0) {
-//                    T node = node0.getValue();
-//                    node0.setNext(null);
-//                    return node;
-//                } else {
-//                    ListNode<T> previousNode = new ListNode<>(this.get(i - 1));
-//                    ListNode<T> currentNode = new ListNode<>(this.get(i));
-//                    ListNode<T> nextNode = new ListNode<>(this.get(i + 1));
-//                    previousNode.setNext(nextNode);
-//                    nextNode.setPrevious(previousNode);
-//                    return currentNode.getValue();
-//                }
-//            }
-//            return node;
-
 
     @Override
     public int indexOf(T o) {
-        if (this.isEmpty()) {
-            return -1;
-        }
-        int count = 0;
+        int index = 0;
         ListNode<T> currentNode = this.first;
-        if (currentNode == null) {
-            return -1;
-        }
-        while (currentNode.getNext() != null) {
-            if (currentNode.getValue() == o) {
-                return count;
-            }
-            count += 1;
+        while(currentNode != o && currentNode.getNext() != null) {
+            index ++;
             currentNode = currentNode.getNext();
         }
-        return -1;
+        if (currentNode.getValue() != o) {
+            return -1;
+        }
+        return index + 1;
     }
 
 //     The return value should consist of the toString() return of every value, separated by ,
