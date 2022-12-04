@@ -93,17 +93,11 @@ public class LinkedList<T> implements MyList<T> {
                         currentNode = currentNode.getNext();
                     }
                     currentNode.setNext(currentNode.getNext().getNext());
+                    currentNode.getNext().setPrevious(currentNode);
                 }
             }
         }
     }
-
-//        if (this.contains(o)) {
-////            removes the first node (if it exists) with the value equal to the method parameter.
-//            int index = indexOf(o);
-//            remove(index);
-//        }
-
 
     @Override
     public void clear() {
@@ -164,8 +158,24 @@ public class LinkedList<T> implements MyList<T> {
 //    TODO: need to fix this
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
-        return get(index);
+        if (index < 0 || index >= this.size()) {
+            throw new IndexOutOfBoundsException("List index is out of bound");
+        }
+        T node = get(index);
+        remove(node);
+        return node;
     }
+//        if (this.first != null) {
+//            ListNode<T> currentNode = this.first;
+//            for (int i = 0; i < index; i++) {
+//                if (currentNode.getNext() == null)
+//                    break;
+//                currentNode = currentNode.getNext();
+//            }
+//            currentNode.setNext(currentNode.getNext().getNext());
+//            currentNode.getNext().setPrevious(currentNode);
+//        }
+
 //        if (index < 0 || index > this.size() - 1) {
 //            throw new IndexOutOfBoundsException("List index is out of bound");
 //        } else if (isEmpty()) {
