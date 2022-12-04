@@ -120,9 +120,6 @@ public class LinkedList<T> implements MyList<T> {
         }
         ListNode<T> currentNode = this.first.getNext();
         for (int i = 0; i < index; i++) {
-            if (currentNode.getNext() == null) {
-                return null;
-            }
             currentNode = currentNode.getNext();
         }
         return currentNode.getValue();
