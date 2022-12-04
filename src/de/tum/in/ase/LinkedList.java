@@ -89,10 +89,10 @@ public class LinkedList<T> implements MyList<T> {
                     }
                     currentNode = currentNode.getNext();
                 }
-////                If there's only 1 element in this list
-//                if(currentNode.getPrevious() == null) {
-//                    currentNode.setNext(null);
-//                }
+//                If there's only 1 element in this list
+                if(currentNode.getPrevious() == null) {
+                    this.clear();
+                }
 //                currentNode is the node before node with value o
                 if (currentNode.getNext().getNext() != null) {
                     currentNode.setNext(currentNode.getNext().getNext());
