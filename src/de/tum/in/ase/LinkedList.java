@@ -82,19 +82,17 @@ public class LinkedList<T> implements MyList<T> {
     //    TODO: need to fix
     @Override
     public void remove(T o) {
-        if (this.contains(o)) {
-            int index = this.indexOf(o);
-            if (index >= 0 || index < size()) {
-                if (this.first != null) {
-                    ListNode<T> currentNode = this.first;
-                    for (int i = 0; i < index; i++) {
-                        if (currentNode.getNext() == null)
-                            break;
-                        currentNode = currentNode.getNext();
-                    }
-                    currentNode.setNext(currentNode.getNext().getNext());
-                    currentNode.getNext().setPrevious(currentNode);
+        int index = this.indexOf(o);
+        if (index >= 0 || index < size()) {
+            if (this.first != null) {
+                ListNode<T> currentNode = this.first;
+                for (int i = 0; i < index; i++) {
+                    if (currentNode.getNext() == null)
+                        break;
+                    currentNode = currentNode.getNext();
                 }
+                currentNode.setNext(currentNode.getNext().getNext());
+                currentNode.getNext().setPrevious(currentNode);
             }
         }
     }
@@ -155,7 +153,6 @@ public class LinkedList<T> implements MyList<T> {
         }
     }
 
-//    TODO: need to fix this
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= this.size()) {
@@ -165,50 +162,6 @@ public class LinkedList<T> implements MyList<T> {
         remove(node);
         return node;
     }
-//        if (this.first != null) {
-//            ListNode<T> currentNode = this.first;
-//            for (int i = 0; i < index; i++) {
-//                if (currentNode.getNext() == null)
-//                    break;
-//                currentNode = currentNode.getNext();
-//            }
-//            currentNode.setNext(currentNode.getNext().getNext());
-//            currentNode.getNext().setPrevious(currentNode);
-//        }
-
-//        if (index < 0 || index > this.size() - 1) {
-//            throw new IndexOutOfBoundsException("List index is out of bound");
-//        } else if (isEmpty()) {
-//            return null;
-//        } else {
-//            int count = index;
-//            ListNode<T> current = node0;
-//            while (count < this.size() - 1) {
-//                if (count == 0) {
-//                    T node = node0.getValue();
-//                    node0.setNext(null);
-//                    return node;
-//                } else {
-//                    if (count == this.size() - 1) {
-//                        T node = node2.getValue();
-//                        node2.setPrevious(null);
-//                        ListNode<T> previousNode = new ListNode<>(this.get(count - 1));
-//                        previousNode.setNext(null);
-//                        return node;
-//                    } else {
-//                        ListNode<T> previousNode = new ListNode<>(this.get(count - 1));
-//                        ListNode<T> currentNode = new ListNode<>(this.get(count));
-//                        ListNode<T> nextNode = new ListNode<>(this.get(count + 1));
-//                        previousNode.setNext(nextNode);
-//                        nextNode.setPrevious(previousNode);
-//                        return currentNode.getValue();
-//                    }
-//                    count += 1;
-//                    current = current.getNext();
-//                }
-//            }
-//        }
-//    }
 
     @Override
     public int indexOf(T o) {
