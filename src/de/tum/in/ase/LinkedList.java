@@ -97,7 +97,7 @@ public class LinkedList<T> implements MyList<T> {
 
         if (index >= 0 || index < size()) {
             if (currentNode != null) {
-                for (int i = 0; i < index - 1; i++) {
+                for (int i = 0; i < index; i++) {
                     if (currentNode.getNext() == null) {
                         break;
                     }
