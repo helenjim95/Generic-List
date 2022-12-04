@@ -1,8 +1,5 @@
 package de.tum.in.ase;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 // make it implement the interface MyList
 public class LinkedList<T> implements MyList<T> {
@@ -186,17 +183,15 @@ public class LinkedList<T> implements MyList<T> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("[");
-        if (this.first != null) {
-            ListNode<T> currentNode = this.first.getNext();
-            while (currentNode != null) {
-                str.append(currentNode.getValue().toString());
-                if (currentNode.getNext() != null) {
-                    str.append(", ");
-                }
-                currentNode = currentNode.getNext();
+        ListNode<T> currentNode = this.first;
+        while (currentNode != null) {
+            str.append(currentNode.getValue().toString());
+            if (currentNode.getNext() != null) {
+                str.append(", ");
             }
-            str.append("]");
+            currentNode = currentNode.getNext();
         }
+        str.append("]");
         return str.toString();
     }
 }
