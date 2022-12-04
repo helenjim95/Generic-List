@@ -90,19 +90,20 @@ public class LinkedList<T> implements MyList<T> {
                     currentNode = currentNode.getNext();
                 }
 //                If there's only 1 element in this list
-                if(currentNode.getPrevious() == null) {
+                if(currentNode.getPrevious() == null && currentNode.getNext() == null) {
                     this.clear();
-                }
+                } else if (currentNode.getNext() != null) {
 //                currentNode is the node before node with value o
-                if (currentNode.getNext().getNext() != null) {
-                    currentNode.setNext(currentNode.getNext().getNext());
-                } else {
-                    currentNode.setNext(null);
-                }
-                if (currentNode.getPrevious() != null) {
-                    currentNode.getNext().setPrevious(currentNode);
-                } else {
-                    currentNode.getNext().setPrevious(null);
+                    if (currentNode.getNext().getNext() != null) {
+                        currentNode.setNext(currentNode.getNext().getNext());
+                    } else {
+                        currentNode.setNext(null);
+                    }
+                    if (currentNode.getPrevious() != null) {
+                        currentNode.getNext().setPrevious(currentNode);
+                    } else {
+                        currentNode.getNext().setPrevious(null);
+                    }
                 }
             }
         }
