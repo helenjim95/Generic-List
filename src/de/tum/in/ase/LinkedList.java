@@ -105,17 +105,19 @@ public class LinkedList<T> implements MyList<T> {
     //    TODO: need to fix
     @Override
     public void remove(T o) {
-        int index = this.indexOf(o);
-        if (index >= 0 || index < size()) {
-            if (this.first != null) {
-                ListNode<T> currentNode = this.first;
-                for (int i = 0; i < index; i++) {
-                    if (currentNode.getNext() == null)
-                        break;
-                    currentNode = currentNode.getNext();
+        if (this.contains(o)) {
+            int index = this.indexOf(o);
+            if (index >= 0 || index < size()) {
+                if (this.first != null) {
+                    ListNode<T> currentNode = this.first;
+                    for (int i = 0; i < index; i++) {
+                        if (currentNode.getNext() == null)
+                            break;
+                        currentNode = currentNode.getNext();
+                    }
+                    currentNode.setNext(currentNode.getNext().getNext());
+                    // decrement the number of elements variable
                 }
-                currentNode.setNext(currentNode.getNext().getNext());
-                // decrement the number of elements variable
             }
         }
     }
@@ -202,8 +204,6 @@ public class LinkedList<T> implements MyList<T> {
 //                }
 //            }
 
-
-//    TODO: need to change
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
         return get(index);
@@ -290,40 +290,19 @@ public class LinkedList<T> implements MyList<T> {
 //     (a comma followed by a single space) and encapsulated in brackets: []
     @Override
     public String toString() {
-        String output = "";
+        StringBuilder str = new StringBuilder();
+        str.append("[");
         if (this.first != null) {
             ListNode<T> currentNode = this.first.getNext();
             while (currentNode != null) {
-                output += "[" + currentNode.getValue().toString() + "]";
+                str.append(currentNode.getValue().toString());
+                if (currentNode.getNext() != null) {
+                    str.append(",");
+                }
                 currentNode = currentNode.getNext();
             }
+            str.append("]");
         }
-        return output;
+        return str.toString();
     }
-
-
-//        List<T> elements = new ArrayList<>();
-//        if (this.isEmpty()) {
-//            return "[]";
-//        } else {
-//            if (this.size() == 1) {
-//                T value = get(0);
-//                return this.value.toString();
-//            } else {
-//            // iterate through list and add value as string to list
-//                int count = 0;
-//                ListNode<T> currentNode = this.first;
-//                if (currentNode == null) {
-//                    return "[]";
-//                }
-//                while(currentNode.getNext() != null) {
-//                    elements.add(currentNode.getValue());
-//                    count += 1;
-//                    currentNode = currentNode.getNext();
-//                }
-//                return "[" + elements.stream().map(String::valueOf).collect(Collectors.joining(",")) + "]";
-//            }
-//        }
-//    }
-
 }
