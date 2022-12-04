@@ -73,7 +73,6 @@ public class LinkedList<T> implements MyList<T> {
 //        return false;
     }
 
-//    TODO: need to fix
     @Override
     public void add(T t) {
         ListNode<T> newNode = new ListNode<>(t);
@@ -164,14 +163,15 @@ public class LinkedList<T> implements MyList<T> {
             if (currentNode != null) {
                 // crawl to the requested index or the last element in the list, whichever comes first
                 for (int i = 0; i < index && currentNode.getNext() != null; i++) {
+                    // set the new node's next-node reference to this node's next-node reference
+                    newNode.setPrevious(currentNode.getPrevious());
+                    newNode.setNext(currentNode);
+                    // now set this node's next-node reference to the new node
+                    currentNode.setPrevious(newNode);
+                    currentNode.setNext(currentNode.getNext());
                     currentNode = currentNode.getNext();
                 }
             }
-            // set the new node's next-node reference to this node's next-node reference
-            newNode.setNext(currentNode.getNext());
-            // now set this node's next-node reference to the new node
-            currentNode.setNext(newNode);
-
         }
     }
 //            for (int i = this.size() - 1; i >= index; i--) {
