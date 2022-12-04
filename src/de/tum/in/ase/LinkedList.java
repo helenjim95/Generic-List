@@ -77,7 +77,7 @@ public class LinkedList<T> implements MyList<T> {
         if (this.first == null) {
             this.first = new ListNode<>(t);
         } else {
-            ListNode<T> newNode = new ListNode<>(element);
+            ListNode<T> newNode = new ListNode<>(t);
             ListNode<T> currentNode = this.first;
             // Let's check for NPE before iterate over crunchifyCurrent
             if (currentNode != null) {
