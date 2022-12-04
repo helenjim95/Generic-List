@@ -10,7 +10,6 @@ public class ListNode<T> {
 
     public ListNode(T value) {
         this.value = value;
-        this.previous = null;
         this.next = null;
     }
 

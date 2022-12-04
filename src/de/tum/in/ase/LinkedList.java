@@ -79,15 +79,10 @@ public class LinkedList<T> implements MyList<T> {
         } else {
             ListNode<T> newNode = new ListNode<>(t);
             ListNode<T> currentNode = this.first;
-            // Let's check for NPE before iterate over crunchifyCurrent
-            if (currentNode != null) {
-                // starting at the head node, crawl to the end of the list and then add element after last node
-                while (currentNode.getNext() != null) {
-                    currentNode = currentNode.getNext();
-                }
-                // the last node's "next" reference set to our new node
-                currentNode.setNext(newNode);
+            while (currentNode.getNext() != null) {
+                currentNode = currentNode.getNext();
             }
+            currentNode.setNext(newNode);
 
         }
     }
