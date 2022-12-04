@@ -206,16 +206,22 @@ public class LinkedList<T> implements MyList<T> {
 
     @Override
     public int indexOf(T o) {
-        int index = 0;
-        ListNode<T> currentNode = this.first;
-        while(currentNode != o && currentNode.getNext() != null) {
-            index ++;
-            currentNode = currentNode.getNext();
-        }
-        if (currentNode.getValue() != o) {
+        if (this.isEmpty()) {
             return -1;
         }
-        return index + 1;
+        int index = 0;
+        ListNode<T> currentNode = this.first;
+        if (currentNode == null) {
+            return -1;
+        }
+        while (currentNode.getNext() != null) {
+            if (currentNode.getValue() == o) {
+                return index;
+            }
+            index += 1;
+            currentNode = currentNode.getNext();
+        }
+        return -1;
     }
 
 //     The return value should consist of the toString() return of every value, separated by ,
