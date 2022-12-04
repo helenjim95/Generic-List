@@ -81,21 +81,29 @@ public class LinkedList<T> implements MyList<T> {
     public void remove(T o) {
         int index = this.indexOf(o);
         if (index >= 0 || index < size()) {
-            if (this.first != null) {
-                ListNode<T> currentNode = this.first;
-                for (int i = 0; i < index; i++) {
+            ListNode<T> currentNode = this.first;
+            if (currentNode != null) {
+                for (int i = 0; i < index - 1; i++) {
                     if (currentNode.getNext() == null) {
                         break;
                     }
-                    if (currentNode.getNext().getNext() != null) {
-                        currentNode.setNext(currentNode.getNext().getNext());
-                        currentNode.getNext().setPrevious(currentNode);
-                    } else {
-                        currentNode.setNext(null);
-                    }
                     currentNode = currentNode.getNext();
                 }
-
+////                If there's only 1 element in this list
+//                if(currentNode.getPrevious() == null) {
+//                    currentNode.setNext(null);
+//                }
+//                currentNode is the node before node with value o
+                if (currentNode.getNext().getNext() != null) {
+                    currentNode.setNext(currentNode.getNext().getNext());
+                } else {
+                    currentNode.setNext(null);
+                }
+                if (currentNode.getPrevious() != null) {
+                    currentNode.getNext().setPrevious(currentNode);
+                } else {
+                    currentNode.getNext().setPrevious(null);
+                }
             }
         }
     }
