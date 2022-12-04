@@ -165,9 +165,6 @@ public class LinkedList<T> implements MyList<T> {
 
     @Override
     public int indexOf(T o) {
-        if (this.isEmpty()) {
-            return -1;
-        }
         int index = 0;
         ListNode<T> currentNode = this.first;
         if (currentNode == null) {
