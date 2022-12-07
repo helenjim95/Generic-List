@@ -82,7 +82,7 @@ public class LinkedList<T> implements MyList<T> {
         int index = this.indexOf(o);
         ListNode<T> currentNode = this.first;
 //        TODO: need to fix here
-        if (this.size() > 0  && index >= 0 && index < this.size() && this.contains(o)) {
+        if (this.size() > 0  && index >= 0 && index < this.size()) {
             if (currentNode != null) {
                 if (index == 0) {
                     if (this.size() == 1) {

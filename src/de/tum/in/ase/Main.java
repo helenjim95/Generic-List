@@ -22,5 +22,12 @@ public class Main {
         list.setLast(fifth);
         list.remove("three");
         System.out.println(list);
+
+        ListNode first2 = new ListNode("one");
+        LinkedList<String> list2 = new LinkedList<>();
+        System.out.println(list2);
+        list2.setFirst(first2);
+        list2.remove("one");
+        System.out.println(list2);
     }
 }
