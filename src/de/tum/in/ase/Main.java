@@ -20,7 +20,7 @@ public class Main {
         fifth.setNext(null);
         list.setFirst(first);
         list.setLast(fifth);
-        list.remove("five");
+        list.remove("seceo");
         System.out.println(list);
     }
 }

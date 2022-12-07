@@ -79,27 +79,27 @@ public class LinkedList<T> implements MyList<T> {
     //    TODO: need to fix
     @Override
     public void remove(T o) {
-        int index = 0;
+        int index = this.indexOf(o);
         ListNode<T> currentNode = this.first;
-        while (currentNode != null) {
-            if (currentNode.getValue().equals(o)) {
-                index = 0;
-                break;
-            } else {
-                if (currentNode.getValue() != null) {
-                    currentNode = currentNode.getNext();
-                    index +=1;
-                    if (currentNode.getValue().equals(o)) {
-                        break;
-                    }
-                } else {
-                    break;
-                }
-            }
-        }
+//        while (currentNode != null) {
+//            if (currentNode.getValue().equals(o)) {
+//                index = 0;
+//                break;
+//            } else {
+//                if (currentNode.getValue() != null) {
+//                    currentNode = currentNode.getNext();
+//                    index +=1;
+//                    if (currentNode.getValue().equals(o)) {
+//                        break;
+//                    }
+//                } else {
+//                    break;
+//                }
+//            }
+//        }
 
 //        TODO: need to fix here
-        if (index >= 0 || index < size()) {
+        if (index >= 0 &&  index < size()) {
             if (currentNode != null) {
                 for (int i = 0; i < index; i++) {
                     if (currentNode.getNext() == null) {
