@@ -80,56 +80,59 @@ public class LinkedList<T> implements MyList<T> {
     @Override
     public void remove(T o) {
         int index = this.indexOf(o);
-        ListNode<T> currentNode = this.first;
-//        while (currentNode != null) {
-//            if (currentNode.getValue().equals(o)) {
-//                index = 0;
-//                break;
-//            } else {
-//                if (currentNode.getValue() != null) {
-//                    currentNode = currentNode.getNext();
-//                    index +=1;
-//                    if (currentNode.getValue().equals(o)) {
-//                        break;
-//                    }
-//                } else {
-//                    break;
-//                }
-//            }
-//        }
-
+            ListNode<T> currentNode = this.first;
 //        TODO: need to fix here
-        if (index >= 0 &&  index < size()) {
-            if (currentNode != null) {
-                for (int i = 0; i < index; i++) {
-                    if (currentNode.getNext() == null) {
-                        break;
-                    }
-                    currentNode = currentNode.getNext();
-                }
-//                If there's only 1 element in this list
-                if(currentNode.getPrevious() == null && currentNode.getNext() == null) {
-                    this.clear();
-                } else if (currentNode.getNext() != null) {
-//                currentNode is the node before node with value o
-                    if (currentNode.getNext().getNext() != null) {
-                        currentNode.setNext(currentNode.getNext().getNext());
-                        currentNode.getNext().setPrevious(currentNode);
+            if (index >= 0 && this.size() > 0 && index < this.size() && this.contains(o)) {
+                if (currentNode != null) {
+                    if (this.size() == 1) {
+                        this.clear();
                     } else {
-                        currentNode.setNext(null);
+                        if (index == 0) {
+                            this.first = currentNode.getNext();
+                            this.first.setPrevious(null);
+                        } else {
+                            for (int i = 0; i < index; i++) {
+                                currentNode = currentNode.getNext();
+                            }
+                            if (index == this.size() - 1) {
+                                this.last = currentNode.getPrevious();
+                                this.last.setNext(null);
+                            } else {
+                                currentNode.getPrevious().setNext(currentNode.getNext());
+                                currentNode.getNext().setPrevious(currentNode.getPrevious());
+                            }
+                        }
                     }
-                } else {
-                   currentNode.getPrevious().setNext(null);
-                }
+//                    for (int i = 0; i < this.size() - 1; i++) {
+//                        if (currentNode.getNext() != null) {
+//                            if (currentNode.getNext().getValue() == o) {
+//                                currentNode.setNext(currentNode.getNext().getNext());
+//                                currentNode.getNext().setPrevious(currentNode);
+//                            }
+//                            currentNode = currentNode.getNext();
+//                    }
+////                If there's only 1 element in this list
+////                TODO: need to check if this is working
+////                TODO: need to check index 0 to be removed
+////                currentNode is the node before node with value o
+//                        if (currentNode.getNext().getNext() != null) {
+//                            currentNode.setNext(currentNode.getNext().getNext());
+//                            currentNode.getNext().setPrevious(currentNode);
+//                        } else {
+//                            currentNode.setNext(null);
+//                        }
+//                    } else {
+//                        currentNode.getPrevious().setNext(null);
+//                    }
+//                }
             }
         }
     }
 
     @Override
     public void clear() {
-        if (!this.isEmpty()) {
-            this.first.setNext(null);
-        }
+        this.first = null;
+        this.last = null;
     }
 
     @Override
