@@ -118,6 +118,8 @@ public class LinkedList<T> implements MyList<T> {
                     } else {
                         currentNode.setNext(null);
                     }
+                } else {
+                   currentNode.getPrevious().setNext(null);
                 }
             }
         }
