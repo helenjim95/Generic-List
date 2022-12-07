@@ -82,7 +82,7 @@ public class LinkedList<T> implements MyList<T> {
         int index = 0;
         ListNode<T> currentNode = this.first;
         while (currentNode != null) {
-            if (currentNode.getValue() == o) {
+            if (currentNode.getValue().equals(o)) {
                 index = 0;
                 break;
             } else {
