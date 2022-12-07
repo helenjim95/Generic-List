@@ -88,7 +88,10 @@ public class LinkedList<T> implements MyList<T> {
             } else {
                 if (currentNode.getValue() != null) {
                     currentNode = currentNode.getNext();
-                    index += 1;
+                    index +=1;
+                    if (currentNode.getValue().equals(o)) {
+                        break;
+                    }
                 } else {
                     break;
                 }
