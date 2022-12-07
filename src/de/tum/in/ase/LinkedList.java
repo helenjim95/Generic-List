@@ -169,8 +169,8 @@ public class LinkedList<T> implements MyList<T> {
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         }
-        T node = get(index);
-        remove(node);
+        T node = this.get(index);
+        this.remove(node);
         return node;
     }
 
@@ -182,7 +182,7 @@ public class LinkedList<T> implements MyList<T> {
             return -1;
         }
         while (currentNode != null) {
-            if (currentNode.getValue() == o) {
+            if(currentNode.getValue().equals(o)) {
                 return index;
             }
             index += 1;
