@@ -133,12 +133,20 @@ public class LinkedList<T> implements MyList<T> {
             throw new IndexOutOfBoundsException("List index is out of bound");
         } else {
             if (currentNode != null) {
-              if (index == 0) {
+                if (index == 0) {
                     this.first = newNode;
                     this.first.setPrevious(null);
                     this.first.setNext(currentNode);
                     currentNode.setPrevious(this.first);
                 } else {
+//                    for (int i = 0; i < index; i++) {
+//                        currentNode = currentNode.getNext();
+//                    }
+//                    newNode.setPrevious(currentNode.getPrevious());
+//                    newNode.setNext(currentNode);
+//                    currentNode.getPrevious().setNext(newNode);
+//                    currentNode.setPrevious(newNode);
+//                }
                     // crawl to the requested index or the last element in the list, whichever comes first
                     for (int i = 0; i < index && currentNode.getNext() != null; i++) {
                         // set the new node's next-node reference to this node's next-node reference
