@@ -4,6 +4,7 @@ package de.tum.in.ase;
 // make it implement the interface MyList
 public class LinkedList<T> implements MyList<T> {
 
+
     private ListNode<T> first;
     private ListNode<T> last;
 
