@@ -133,7 +133,7 @@ public class LinkedList<T> implements MyList<T> {
             throw new IndexOutOfBoundsException("List index is out of bound");
         } else {
             if (currentNode != null) {
-                if (index == 0) {
+              if (index == 0) {
                     this.first = newNode;
                     this.first.setPrevious(null);
                     this.first.setNext(currentNode);
