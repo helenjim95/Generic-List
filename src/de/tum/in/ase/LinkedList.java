@@ -129,20 +129,30 @@ public class LinkedList<T> implements MyList<T> {
     public void add(int index, T element) throws IndexOutOfBoundsException {
         ListNode<T> newNode = new ListNode<>(element);
         ListNode<T> currentNode = this.first;
-        if (index < 0 || index > this.size() - 1) {
+        if (index < 0 || index > this.size() - 1 || (this.size() == 0 && index != 0)) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         } else {
+//            If the list is empty, add element to index 0
             if (this.size() == 0 && index == 0) {
                 this.first = newNode;
                 this.first.setPrevious(null);
                 this.first.setNext(null);
             } else if (currentNode != null) {
+//                If the list is not 0, add element to index 0
                 if (index == 0) {
                     this.first = newNode;
                     this.first.setPrevious(null);
                     this.first.setNext(currentNode);
                     currentNode.setPrevious(this.first);
-                } else {
+                } else { // add element to index > 0
+                    for (int i = 0; i < index; i++) {
+                        currentNode = currentNode.getNext();
+                    }
+                    newNode.setNext(currentNode);
+                    newNode.setPrevious(currentNode.getPrevious());
+                    currentNode.getPrevious().setNext(newNode);
+                    currentNode.setPrevious(newNode);
+                }
 //                    for (int i = 0; i < index; i++) {
 //                        currentNode = currentNode.getNext();
 //                    }
@@ -152,19 +162,19 @@ public class LinkedList<T> implements MyList<T> {
 //                    currentNode.setPrevious(newNode);
 //                }
                     // crawl to the requested index or the last element in the list, whichever comes first
-                    for (int i = 0; i < index && currentNode.getNext() != null; i++) {
-                        // set the new node's next-node reference to this node's next-node reference
-                        newNode.setPrevious(currentNode.getPrevious());
-                        currentNode.setPrevious(newNode);
-                        newNode.setNext(currentNode);
-                        // Check if new node is added as head
-                        if (newNode.getPrevious() != null) {
-                            newNode.getPrevious().setNext(newNode);
-                        } else {
-                            this.first = newNode;
-                        }
-                    }
-                }
+//                    for (int i = 0; i < index && currentNode.getNext() != null; i++) {
+//                        // set the new node's next-node reference to this node's next-node reference
+//                        newNode.setPrevious(currentNode.getPrevious());
+//                        currentNode.setPrevious(newNode);
+//                        newNode.setNext(currentNode);
+//                        // Check if new node is added as head
+//                        if (newNode.getPrevious() != null) {
+//                            newNode.getPrevious().setNext(newNode);
+//                        } else {
+//                            this.first = newNode;
+//                        }
+//                    }
+
             }
         }
     }
