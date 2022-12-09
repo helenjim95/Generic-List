@@ -4,7 +4,6 @@ package de.tum.in.ase;
 // make it implement the interface MyList
 public class LinkedList<T> implements MyList<T> {
 
-
     private ListNode<T> first;
     private ListNode<T> last;
 
@@ -133,7 +132,11 @@ public class LinkedList<T> implements MyList<T> {
         if (index < 0 || index > this.size() - 1) {
             throw new IndexOutOfBoundsException("List index is out of bound");
         } else {
-            if (currentNode != null) {
+            if (this.size() == 0 && index == 0) {
+                this.first = newNode;
+                this.first.setPrevious(null);
+                this.first.setNext(null);
+            } else if (currentNode != null) {
                 if (index == 0) {
                     this.first = newNode;
                     this.first.setPrevious(null);
